@@ -1,41 +1,29 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href={{url_for('static', filename='style.css')}}> -->
-    <title>Xentara Configuration</title>
-  </head>
-  
-    <body>
-		<div class="container ">	        
-			<header class="row">
-				<div class="col-xs-12">	
-					<h1>Xentara Configuration</h1>	
-                </div>
-            </header>  
-             	
-			<section class="row">
-				<div class="col-xs-12">						
-					<h2 id="introHeader">Upload your CSV File</h2>
-					
-            <form action = "{{url_for('uploadFile')}}" method = "POST" 
-                    enctype = "multipart/form-data">
-                    <input type = "file" name = "file" accept=".csv" />
-                    <input type = "submit"/>
-                </form>
-					
-				</div>
-			</section>
-                
-            <footer class="row">
-                <div class="col-xs-12">	
-                </div>
-            </footer>
-		</div>		
-		
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+{% extends 'layout.html' %}
+{% block content %}
 
-	
-    </body>
+
+<form action="{{url_for('upload_file', file_ext = '.csv')}}" method="POST" enctype="multipart/form-data">
+  <div class="flex justify-center items-center w-full">
+    <label for="dropzone-file"
+      class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+      <div class="flex flex-col justify-center items-center pt-5 pb-6">
+        <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor"
+          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+        </svg>
+        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or
+          drag and drop</p>
+        <p class="text-xs text-gray-500 dark:text-gray-400">CSV</p>
+      </div>
+      <input id="dropzone-file" type="file" class="hidden" accept=".csv" />
+    </label>
+  </div>
+  <input
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+    type="submit" />
+</form>
+
+
+
+{% endblock %}
