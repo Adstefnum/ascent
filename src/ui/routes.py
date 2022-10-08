@@ -7,7 +7,7 @@ from .views.csv_to_database.csv_to_database import csv_to_database
 app.add_url_rule('/', view_func=index)
 app.add_url_rule('/upload-file', view_func=upload_file,
                  methods=['POST', 'GET'])
-app.add_url_rule('/csv-to-database', view_func=csv_to_database,defaults={"file_ext":""},
+app.add_url_rule('/csv-to-database', view_func=csv_to_database,
                     methods = ['POST', 'GET'])
 
 
