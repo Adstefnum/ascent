@@ -16,39 +16,39 @@ def user_upload_file():
 
 def json_to_database_upload():
 
-c = conn.cursor()
+    c = conn.cursor()
 
-sql = """
-    INSERT INTO questions_api_question ( 
-    question, option_A, option_B, option_C, option_D , option_E ,
-    correct_ans , explain , subject, year, acom_type , exam_type , accompany_id 
-    ) 
-    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"""
-
-
-def _valid(field):
-  
-  return field if not KeyError and field else None
+    sql = """
+        INSERT INTO questions_api_question ( 
+        question, option_A, option_B, option_C, option_D , option_E ,
+        correct_ans , explain , subject, year, acom_type , exam_type , accompany_id 
+        ) 
+        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"""
 
 
-
-    file = (os.path.join(app.config["UPLOAD_FOLDER"], "upload.json")
+    def _valid(field):
     
-            with open(file, 'r') as f:
-                data = ujson.loads(f.read())
+        return field if not KeyError and field else None
 
-                for i in range(len(data)-1):
-                    question = data[i]['question']
-                    values = [
+
+
+        file = os.path.join(app.config["UPLOAD_FOLDER"], "upload.json")
+        
+        with open(file, 'r') as f:
+            data = ujson.loads(f.read())
+
+            for i in range(len(data)-1):
+                question = data[i]['question']
+                values = [
 question , option_A , option_B , option_C , option_D , option_E , 
 correct_ans , explain , subject, year, acom_type, exam_type, accompany_id
 
-    ]
+]
 
-                     c.execute(sql,values)
+        c.execute(sql,values)
 
-conn.commit()
-conn.close()
+    conn.commit()
+    conn.close()
 
 def csv_to_database_upload():
     
