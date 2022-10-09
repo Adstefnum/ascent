@@ -10,7 +10,7 @@ idna==3.3
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.1
--e git+ssh://git@github.com/Adstefnum/ascent.git@ae0a000518e8fe94a3ffb73d6d7aa51e8b1ba751#egg=modules
+-e git+ssh://git@github.com/Adstefnum/ascent.git@6a0190d04aa39a98e4951f358ab9204a07be8d5c#egg=modules
 numpy==1.23.2
 pandas==1.4.4
 phonenumbers==8.12.55
