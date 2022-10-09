@@ -49,6 +49,7 @@ correct_ans , explain , subject, year, acom_type, exam_type, accompany_id
 
     conn.commit()
     conn.close()
+    return Response("{'msg':'success'}", status=200, mimetype='application/json')
 
 def csv_to_database_upload():
     
@@ -65,5 +66,12 @@ def csv_to_database_upload():
         json_data = ujson.dumps(item)
 
 
-
+        #TODO: use transactions
         sql_update(sql, (exclude_bra_365,inv_this_line, json_data),cursor=cursor, autocommit=True)
+
+    return Response("{'msg':'success'}", status=200, mimetype='application/json')
+
+def flush_uploads_folder():
+     os.system(f"rm -rf {app.config["UPLOAD_FOLDER"]}/*")
+    
+    
