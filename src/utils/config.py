@@ -13,9 +13,7 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 # Usage: from config import logging | https://docs.python.org/3/library/logging.html
 # Usage: logging.debug(SQL) ; logging.info(SQL) - error warning
 
-# Beanstalk
-beanstalk_srvname = os.getenv("BGR_BEANSTALK_SRVNAME", 'beanstalkd-v2') 
-beanstalk_srvport = os.getenv("BGR_BEANSTALK_PORT", 11300)
+
 
 # MySQL Connection
 dbhost = ''
