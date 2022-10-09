@@ -6,4 +6,4 @@ load_dotenv()
 
 
 if __name__ == '__main__':
-    app.run(debug=os.getenv("DEBUG"))
+    app.run(host=os.getenv("HOST",0.0.0.0), port=os.getenv("PORT", 5000), debug=os.getenv("DEBUG"))
