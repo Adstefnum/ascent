@@ -14,9 +14,10 @@
         </svg>
         <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or
           drag and drop</p>
-        <p class="text-xs text-gray-500 dark:text-gray-400">{{ file_ext }}</p>
+        <p class="text-xs text-gray-500 dark:text-gray-400">{{ file_ext | upper }}</p>
       </div>
       <input name="file" id="dropzone-file" type="file" class="hidden" accept=".{{file_ext}}" />
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     </label> 
   </div>
   <input
