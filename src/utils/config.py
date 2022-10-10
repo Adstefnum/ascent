@@ -1,17 +1,13 @@
 import os
 from dotenv import load_dotenv
 load_dotenv()
-# pip3 install python-dotenv - Get and set values in your .env file in
-# local and production servers
+
 
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(levelname)s:%(filename)s:%(lineno)04d:%(message)s')  # :%(funcName)s
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-
-# Usage: from config import logging | https://docs.python.org/3/library/logging.html
-# Usage: logging.debug(SQL) ; logging.info(SQL) - error warning
 
 
 
