@@ -1,11 +1,12 @@
 from flask import request, Response
 import os
-from ui import app
+from src import app
 import ujson
 import pandas
 import logging
 import shortuuid
 import pprint
+from .dbutils import get_connection
 
 def user_upload_file():
     if request.method == 'POST':
@@ -14,41 +15,32 @@ def user_upload_file():
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], f"upload.{file_ext}"))
     return Response("{'msg':'success'}", status=200, mimetype='application/json')
 
-def json_to_database_upload():
-
-    c = conn.cursor()
-
-    sql = """
-        INSERT INTO questions_api_question ( 
-        question, option_A, option_B, option_C, option_D , option_E ,
-        correct_ans , explain , subject, year, acom_type , exam_type , accompany_id 
-        ) 
-        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"""
-
-
-    def _valid(field):
+def json_to_database_upload(table_name:str,schema:str, column_to_json_key_map:dict={}, create_table:bool=False):
     
-        return field if not KeyError and field else None
+
+    data = request.args.to_dict()
+    conn = get_connection(data)
+    cur = conn.cursor()
+
+    transactions = []
+
+    create_table_sql = """
+    """
+
+    insert_sql = """
+         
+        """ 
 
 
 
-        file = os.path.join(app.config["UPLOAD_FOLDER"], "upload.json")
-        
-        with open(file, 'r') as f:
-            data = ujson.loads(f.read())
+    file = os.path.join(app.config["UPLOAD_FOLDER"], "upload.json")
+    
+    with open(file, 'r') as f:
+        data = ujson.loads(f.read())
 
-            for i in range(len(data)-1):
-                question = data[i]['question']
-                values = [
-question , option_A , option_B , option_C , option_D , option_E , 
-correct_ans , explain , subject, year, acom_type, exam_type, accompany_id
 
-]
 
-        c.execute(sql,values)
 
-    conn.commit()
-    conn.close()
     return Response("{'msg':'success'}", status=200, mimetype='application/json')
 
 def csv_to_database_upload():
@@ -72,6 +64,7 @@ def csv_to_database_upload():
     return Response("{'msg':'success'}", status=200, mimetype='application/json')
 
 def flush_uploads_folder():
-     os.system(f"rm -rf {app.config["UPLOAD_FOLDER"]}/*")
+    #  os.system(f"rm -rf {app.config["UPLOAD_FOLDER"]}/*")
+    pass
     
     
