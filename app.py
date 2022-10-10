@@ -1,4 +1,4 @@
-from ui import app
+from src import app
 import os
 from dotenv import load_dotenv
 
