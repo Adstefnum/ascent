@@ -8,39 +8,10 @@ import shortuuid
 import pprint
 from .dbutils import get_connection
 
-def user_upload_file():
-    if request.method == 'POST':
-        file_ext = request.args.to_dict().get("file_ext")
+def user_upload_file(file_ext):
+    if request.method == 'POST': 
         file = request.files['file']
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], f"upload.{file_ext}"))
-    return Response("{'msg':'success'}", status=200, mimetype='application/json')
-
-def json_to_sql_upload(table_name:str,schema:str, column_to_json_key_map:dict={}, create_table:bool=False):
-    
-
-    data = request.args.to_dict()
-    conn = get_connection(data)
-    cur = conn.cursor()
-
-    transactions = []
-
-    create_table_sql = """
-    """
-
-    insert_sql = """
-         
-        """ 
-
-
-
-    file = os.path.join(app.config["UPLOAD_FOLDER"], "upload.json")
-    
-    with open(file, 'r') as f:
-        data = ujson.loads(f.read())
-
-
-
-
     return Response("{'msg':'success'}", status=200, mimetype='application/json')
 
 def csv_to_sql_upload():
