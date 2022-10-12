@@ -1,5 +1,5 @@
-from FlaskForm import Field
-from wtforms import TextArea
+from wtforms import Field
+from wtforms.widgets import TextArea
 
 class JsonField(Field):
     widget = TextArea()
@@ -10,8 +10,9 @@ class JsonField(Field):
     def process_formdata(self, valuelist):
         output = {}
         if valuelist:
-            list_ = valuelist.split(',')
-            for x in list_:
+            # list_ = valuelist.split(',')
+            for x in valuelist:
+                print(x)
                 maps = x.split(":")
                 output[str(maps[0])] = output[str(maps[1])]
 

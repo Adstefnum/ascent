@@ -1,8 +1,5 @@
-{% extends 'layouts/base.html' %}
-{% block content %}
 
 
-<form action="{{url_for('user_upload_file', file_ext = file_ext )}}" method="POST" enctype="multipart/form-data">
   <div class="flex justify-center items-center w-full">
     <label for="dropzone-file"
       class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -20,12 +17,5 @@
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     </label> 
   </div>
-  {% block addin %}{% endblock %}
-  <input
-    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-    type="submit" />
-</form>
 
 
-
-{% endblock %}
