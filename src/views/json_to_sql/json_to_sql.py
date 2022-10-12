@@ -1,4 +1,4 @@
-from flask import render_template,request,Response
+from flask import render_template,request,Response, redirect
 from forms.json_to_sql import JsonToDatabaseForm
 from utils.dbutils import get_connection
 from utils.file_upload_utils import user_upload_file
@@ -11,12 +11,10 @@ def json_to_sql():
     if request.method =="POST" and form.validate():
         data = form.to_dict()
         user_upload_file("json")
-        return json_to_sql_upload(data)
-        #I have to show like a status and progress bar while it is uploading, connecting to db, uploading to db and finished, then I redirect to homepage
-    return Response("{'msg':'failure'}", status=404, mimetype='application/json')
+    return redirect("/json-sql-upload",data=data)
 
-
-def json_to_sql_upload(data ):
+#redirect to this page and show data concerning upload
+def json_to_sql_upload(data):
     
     conn = get_connection(data)
     cur = conn.cursor()
@@ -40,4 +38,4 @@ def json_to_sql_upload(data ):
 
 
 
-    return Response("{'msg':'success'}", status=200, mimetype='application/json')
+    return render_template('json_to_sql/upload.html',count=count,number=number,status=status)
