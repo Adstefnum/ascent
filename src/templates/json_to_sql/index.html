@@ -2,6 +2,7 @@
 {% block content %}
 <form action="#" method="POST" enctype="multipart/form-data">
     {% include 'layouts/upload_file.html' %}
+    {% include 'layouts/progressbar.html' %}
 <div class="grid gap-6 mb-6 md:grid-cols-2">
     {% for field in form  if field.widget.input_type != 'hidden' %}
     <div>
