@@ -5,13 +5,14 @@ from utils.file_upload_utils import user_upload_file
 
 def json_to_sql():
     
-    if request.GET:
+    if request.method=="GET":
         form = JsonToDatabaseForm()
         return render_template('json_to_sql/index.html',file_ext="json",form=form)
-    if request.POST and form.validate():
+    if request.method =="POST" and form.validate():
         data = form.to_dict()
         user_upload_file("json")
         return json_to_sql_upload(data)
+        #I have to show like a status and progress bar while it is uploading, connecting to db, uploading to db and finished, then I redirect to homepage
     return Response("{'msg':'failure'}", status=404, mimetype='application/json')
 
 
