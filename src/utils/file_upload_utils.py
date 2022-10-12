@@ -15,7 +15,7 @@ def user_upload_file():
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], f"upload.{file_ext}"))
     return Response("{'msg':'success'}", status=200, mimetype='application/json')
 
-def json_to_database_upload(table_name:str,schema:str, column_to_json_key_map:dict={}, create_table:bool=False):
+def json_to_sql_upload(table_name:str,schema:str, column_to_json_key_map:dict={}, create_table:bool=False):
     
 
     data = request.args.to_dict()
@@ -43,7 +43,7 @@ def json_to_database_upload(table_name:str,schema:str, column_to_json_key_map:di
 
     return Response("{'msg':'success'}", status=200, mimetype='application/json')
 
-def csv_to_database_upload():
+def csv_to_sql_upload():
     
     df = pd.read_csv(f"{filename}.csv", encoding='utf-8-sig')  #    latin1
   

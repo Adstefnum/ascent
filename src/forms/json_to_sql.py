@@ -15,3 +15,5 @@ class JsonToDatabaseForm(FlaskForm):
     table_name = StringField('Table Name')
     create_table = BooleanField('Create table?')
     col_to_json_key_map = JsonField('Column name to JSON key maps')
+#change json_to_sql to json_to_sql and make for no_sql
+    # fix col_maps
