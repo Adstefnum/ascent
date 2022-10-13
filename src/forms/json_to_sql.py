@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField,BooleanField,IntegerField,TextAreaField
+from wtforms import StringField, PasswordField,BooleanField,IntegerField,TextAreaField,validators
 from .jsonfield import JsonField
 
 
@@ -13,9 +13,8 @@ class JsonToDatabaseForm(FlaskForm):
     dbname =  StringField('Database Name')
     dbpass = PasswordField('Password')
     table_name = StringField('Table Name')
-    create_table = BooleanField('Create table?',default="unchecked")
+    create_table = BooleanField('Create table?',default="")
     col_to_json_key_map = JsonField('Column name to JSON key maps')
     schema = TextAreaField('Sql Schema')
 
-#next step is to make the default of create_table unchecked
 #validation is the next step
