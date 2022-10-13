@@ -11,12 +11,13 @@ def get_connection(data:dict):
 
     return conn
 
-def get_tcp_connection(data:dict,host,port,dbname,dbuser,dbpass,charset='utf8mb4',connect_timeout=15,autocommit=False):
+def get_tcp_connection(data:dict,charset='utf8mb4',connect_timeout=15,autocommit=False):
+    print(data)
     return pymysql.connect(
         host=data["host"],
-        port=data["port"],
+        port=int(data["port"]),
         db=data["dbname"],
-        user=data["dbuser"],
+        user=data["user"],
         passwd=data["dbpass"],
         autocommit=autocommit,
         charset=charset,
