@@ -16,3 +16,6 @@ class JsonToDatabaseForm(FlaskForm):
     create_table = BooleanField('Create table?',default="unchecked")
     col_to_json_key_map = JsonField('Column name to JSON key maps')
     schema = TextAreaField('Sql Schema')
+
+#next step is to make the default of create_table unchecked
+#validation is the next step
