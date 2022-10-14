@@ -14,6 +14,8 @@ UPLOAD_FOLDER = './uploads'
 app.config['UPLOAD_FOLDER'] = os.getenv("UPLOADS_FOLDER")
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config['SESSION_TYPE'] = 'filesystem'
+app.jinja_env.auto_reload = True
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 CSRFProtect(app)
 Session(app)

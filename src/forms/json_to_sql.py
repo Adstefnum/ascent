@@ -8,6 +8,9 @@ def validate_host(form,field):
 
 class JsonToDatabaseForm(FlaskForm):
 
+   #TODO file upload is not yet compulsory, people might forget , maybe add it to form and validate it then save it with upload file
+   #you can add hidden to it so it is not displayed in the loop or just exclude it from the loop another way and then display it on your own
+   #use the actual name of the file to allow multiple users connect at once?
     # recaptcha = RecaptchaField()
     use_tcp = BooleanField('Use tcp?',default="checked")
     unix_socket = StringField('Unix Socket',[OptionalIfFieldEqualTo('use_tcp','y')])
