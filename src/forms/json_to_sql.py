@@ -21,9 +21,5 @@ class JsonToDatabaseForm(FlaskForm):
     dbname =  StringField('Database Name',[validators.InputRequired()])
     dbpass = PasswordField('Password',[validators.InputRequired()])
     table_name = StringField('Table Name',[validators.InputRequired()])
-    create_table = BooleanField('Create table?',default="")
-    col_to_json_key_map = JsonField('Column name to JSON key maps')
-    schema = TextAreaField('Sql Schema',[OptionalIfFieldEqualTo('use_tcp','y')])
 
 # TODO validation needs more work, people can also fill both unix and host if they choose, fixz this
-# TODO add placeholder for confusing fields like col_to_json, later add more visual option

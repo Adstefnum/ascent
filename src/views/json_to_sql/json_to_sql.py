@@ -9,6 +9,7 @@ import ujson
 def json_to_sql():
     form = JsonToDatabaseForm()
 
+
     if request.method =="POST" and form.validate():
         data = request.form.to_dict()
         user_upload_file("json")
@@ -24,13 +25,18 @@ def json_to_sql_upload(data):
     count = 100
     number = 0
     status="uploading"
-    transactions = []
-    #take in schema properly and then format it into json ready for table creation
+
+    json_ready_schema = ""
+    for col in data["schema"]:
+        tokens = col.split(" ")
+        qualifiers = " ".join(tokens[1:])
+        json_ready_schema += f"`{tokens[0]}` {qualifiers} AS (JSON_VALUE(json_data, '$.{tokens[0]}')) VIRTUAL,\n"
+
     create_table_sql = f"""
     use {data["dbname"]}
     DROP IF EXISTS {data["table_name"]};
     CREATE TABLE {data["table_name"]}
-        {data["schema"]};
+        {data["schema"]}
         `ProductId` varchar(128) AS (JSON_VALUE(json_data, '$.ProductId')) VIRTUAL,
     """
 
@@ -44,10 +50,10 @@ def json_to_sql_upload(data):
 
     file = os.path.join(app.config["UPLOAD_FOLDER"], "upload.json")
     with open(file, 'r') as f:
-        data = ujson.dumps(f.read())
+        records = ujson.dumps(f.read())
 
 
-    cur.executeMany(insert_sql,data)
+    cur.executeMany(insert_sql,records)
     conn.commit()
 
     return render_template('json_to_sql/upload.html')

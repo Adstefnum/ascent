@@ -16,6 +16,15 @@
         {% endif %}
     </div>
     {% endfor %}
+</div>
+    <div id="schema-wrapper">
+<p>hold down the ctrl (windows) or command (mac) button to select multiple options.</p>
+    {% include 'layouts/schema.html' %}
+    <button id="add_more" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+  <svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>
+  Add More
+</button>
+    </div>
     <div class="flex items-start mb-6">
         <div class="flex items-center h-5">
             <input id="remember" type="checkbox" value=""
