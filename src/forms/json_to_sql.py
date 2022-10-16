@@ -1,17 +1,38 @@
-from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField,BooleanField,IntegerField,TextAreaField,validators
+from flask_wtf import FlaskForm, RecaptchaField,Form
+from wtforms import StringField, PasswordField,BooleanField,IntegerField\
+,TextAreaField,validators,SelectField, FieldList, FormField,SelectMultipleField\
+,FileField
 from .jsonfield import JsonField
 from .custom_validators import RequiredIf, OptionalIfFieldEqualTo
 
 def validate_host(form,field):
     return validators.URL(field) or validators.IPAddress(field)
 
+class SchemaField(Form):
+    json_key = StringField('JSON Key')
+    col_name = StringField('Column Name')
+    data_type = SelectField('Data Type', choices=[
+    ("varchar","VARCHAR"),
+    ("text","TEXT"),
+    ("int","INT"),
+    ("float","FLOAT"),
+    ("boolean","BOOLEAN"),
+    ("date","DATE"),
+    ("datetime","DATETIME"),
+    ("timestamp","TIMESTAMP"),
+    ])
+    constraint = SelectMultipleField('Constraint',choices=[
+            ("unique","UNIQUE"),
+    ("primary key","PRIMARY KEY"),
+    ("foreign key","FOREIGN KEY"),
+    ("auto_increment","AUTO INCREMENT"),
+    ("not_null","NOT NULL"),
+    ])
+
 class JsonToDatabaseForm(FlaskForm):
 
-   #TODO file upload is not yet compulsory, people might forget , maybe add it to form and validate it then save it with upload file
-   #you can add hidden to it so it is not displayed in the loop or just exclude it from the loop another way and then display it on your own
-   #use the actual name of the file to allow multiple users connect at once?
     # recaptcha = RecaptchaField()
+    # db_file = FileField('DB File', [validators.regexp('.json$')])
     use_tcp = BooleanField('Use tcp?',default="checked")
     unix_socket = StringField('Unix Socket',[OptionalIfFieldEqualTo('use_tcp','y')])
     # host = StringField('Host',[validators.Regexp(regex=r"(?!w)(\w+\.\w+\.\w+|^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3} (?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$)")])
@@ -21,5 +42,6 @@ class JsonToDatabaseForm(FlaskForm):
     dbname =  StringField('Database Name',[validators.InputRequired()])
     dbpass = PasswordField('Password',[validators.InputRequired()])
     table_name = StringField('Table Name',[validators.InputRequired()])
+    # schema = FieldList(FormField(SchemaField))
 
 # TODO validation needs more work, people can also fill both unix and host if they choose, fixz this

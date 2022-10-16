@@ -9,7 +9,9 @@ import ujson
 def json_to_sql():
     form = JsonToDatabaseForm()
 
-
+#add route to form actgion and see if all data is not transferred
+#if not create all in html and send form data to route
+#find a way to receive both data
     if request.method =="POST" and form.validate():
         data = request.form.to_dict()
         user_upload_file("json")
@@ -19,6 +21,7 @@ def json_to_sql():
 
 #redirect to this page and show data concerning upload
 def json_to_sql_upload(data):
+    print(data)
     
     conn = get_connection(data)
     cur = conn.cursor()

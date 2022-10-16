@@ -1,6 +1,7 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-<form action="#" method="POST" enctype="multipart/form-data">
+<form action="/json-to-sql" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
     {% include 'layouts/upload_file.html' %}
 <div class="grid gap-6 mb-6 md:grid-cols-2">
     {% for field in form  if field.widget.input_type != 'hidden' %}
