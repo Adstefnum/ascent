@@ -12,12 +12,16 @@
                 $("#port").parent().hide();
             }
 
-
-            $('#add_more').click(function(e){
-                    var schema_comp = '<div id="schema" class="flex items-stretch"><input type="text" id="json_key" placeholder="json key" /><input type="text" id="col_name" placeholder="column name"/><div id="datatype"><label for="datatype">datatype</label><select>    <option value="VARCHAR"></option>    <option value="TEXT"></option>    <option value="INT"></option>    <option value="FLOAT"></option>    <option value="BOOLEAN"></option>    <option value="DATE"></option>    <option value="DATETIME"></option>    <option value="TIMESTAMP"></option></select></div><!-- i need to add a text option to enter the max amount for some of these fields --><div id="constraint">    <label for="constraint">constraint</label><select multiple>    <option value="UNIQUE"></option>    <option value="PRIMARY KEY"></option>    <option value="ID"></option>    <option value="FOREIGN KEY"></option>    <option value="AUTO INCREMENT"></option>    <option value="NOT NULL"></option></select></div><p>hold down the ctrl (windows) or command (mac) button to select multiple options.</p></div>';
-
-            $("#schema").append("<h1>added</h1>");
-
-            })
         });
     });
+
+function add_schema_field(){
+
+                    var schema_comp = $(`<div id="schema" class="flex items-stretch"><input type="text" id="json_key" placeholder="json key" /><input type="text" id="col_name" placeholder="column name"/><div id="datatype"><label for="datatype">datatype</label><select>    <option value="VARCHAR"></option>    <option value="TEXT"></option>    <option value="INT"></option>    <option value="FLOAT"></option>    <option value="BOOLEAN"></option>    <option value="DATE"></option>    <option value="DATETIME"></option>    <option value="TIMESTAMP"></option></select></div><div id="constraint">    <label for="constraint">constraint</label><select multiple>    <option value="UNIQUE"></option>    <option value="PRIMARY KEY"></option>    <option value="ID"></option>    <option value="FOREIGN KEY"></option>    <option value="AUTO INCREMENT"></option>    <option value="NOT NULL"></option></select></div><button onclick = "remove_schema_field(this);" type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800">  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4.00000017,11 L20,11 C20.5522847,11 21,11.4477153 21,12 C21,12.5522847 20.5522847,13 20,13 L4,13 C3.44771525,13 3,12.5522847 3,12 C3,11.4477153 3.44771525,11 4,11 L4.00000017,11 Z" id="Shape"></path></svg>  <span class="sr-only">Icon description</span></button></div>`);
+
+            $("#schema").append(schema_comp);
+}
+
+function remove_schema_field(element){
+   element.closest("#schema").remove()
+}
