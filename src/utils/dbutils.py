@@ -25,7 +25,7 @@ def get_tcp_connection(data:dict,charset='utf8mb4',connect_timeout=15,autocommit
         connect_timeout=connect_timeout
     )
 
-def get_unix_connection(data:dict,unix_socket,port,dbname,dbuser,dbpass,charset='utf8mb4',connect_timeout=15,autocommit=False):
+def get_unix_connection(data:dict,charset='utf8mb4',connect_timeout=15,autocommit=False):
     return pymysql.connect(
         unix_socket=data["unix_socket"],
         port=data["port"],
