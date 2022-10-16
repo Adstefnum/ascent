@@ -30,7 +30,7 @@ def get_unix_connection(data:dict,charset='utf8mb4',connect_timeout=15,autocommi
         unix_socket=data["unix_socket"],
         port=data["port"],
         db=data["dbname"],
-        user=data["dbuser"],
+        user=data["user"],
         passwd=data["dbpass"],
         autocommit=autocommit,
         charset=charset,
