@@ -32,7 +32,6 @@ class SchemaField(Form):
 class JsonToDatabaseForm(FlaskForm):
 
     # recaptcha = RecaptchaField()
-    # db_file = FileField('DB File', [validators.regexp('.json$')])
     use_tcp = BooleanField('Use tcp?',default="checked")
     unix_socket = StringField('Unix Socket',[OptionalIfFieldEqualTo('use_tcp','y')])
     # host = StringField('Host',[validators.Regexp(regex=r"(?!w)(\w+\.\w+\.\w+|^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3} (?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$)")])
@@ -42,6 +41,5 @@ class JsonToDatabaseForm(FlaskForm):
     dbname =  StringField('Database Name',[validators.InputRequired()])
     dbpass = PasswordField('Password',[validators.InputRequired()])
     table_name = StringField('Table Name',[validators.InputRequired()])
-    schema = FieldList(FormField(SchemaField))
 
 # TODO validation needs more work, people can also fill both unix and host if they choose, fixz this

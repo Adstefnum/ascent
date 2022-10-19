@@ -12,6 +12,7 @@ def json_to_sql():
 
     if request.method =="POST" and form.validate():
         data = request.form.to_dict()
+        print(data)
         user_upload_file("json")
         return json_to_sql_upload(data)
 

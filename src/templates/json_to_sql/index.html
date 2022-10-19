@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-<form action="/json-to-sql" method="POST" enctype="multipart/form-data">
+<form action="" id="form1" method="POST" onsubmit="return validateForm()" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     {% include 'layouts/upload_file.html' %}
 <div class="grid gap-6 mb-6 md:grid-cols-2">
@@ -16,17 +16,23 @@
         {% endif %}
     </div>
     {% endfor %}
+</div>  
 </div>
-{{ form.schema.json_key }}
-    <div id="schema-wrapper" class="block">
+ 
+</form>
+<form action="/json-to-sql" id="form2" method="POST" onsubmit="return validateForm2()" >
+    {{ form.hidden_tag() }}
+  <div id="schema-wrapper" class="block">
 <p>hold down the ctrl (windows) or command (mac) button to select multiple options.</p>
     {% include 'layouts/schema.html' %}
-    <button onclick="add_schema_field()" id="add_more" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+   
+    </div>
+</form>
+ <button onclick="add_schema_field()" id="add_more" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
   <svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>
   Add More
 </button>
-    </div>
-    <div class="flex items-start mb-6">
+ <div class="flex items-start mb-6">
         <div class="flex items-center h-5">
             <input id="remember" type="checkbox" value=""
                 class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
@@ -35,10 +41,8 @@
         <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400">I agree with the <a
                 href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
     </div>
-</div>
-  <input
+     <input
     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-    type="submit" />
+    type="button" onclick="submit_both_forms()" value="submit" />
     <script src="{{url_for('static',filename='js/fields.js')}}"> </script>
-</form>
 {% endblock %}
