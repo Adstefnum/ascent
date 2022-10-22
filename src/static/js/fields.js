@@ -48,16 +48,3 @@ function remove_schema_field(element){
    element.closest("#schema").remove()
 }
 
-function submit_both_forms(){
-    document.getElementById("form1").submit();
-    document.getElementById("form2").submit();
-
-}
-
-function validateForm(){
-    
-}
-
-function validateForm2(){
-
-}

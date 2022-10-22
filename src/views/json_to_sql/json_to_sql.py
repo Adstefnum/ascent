@@ -14,7 +14,7 @@ def json_to_sql():
         data = request.form.to_dict()
         print(data)
         user_upload_file("json")
-        return json_to_sql_upload(data)
+        return redirect(url_for('schema_form',conn_data=data))
 
     return render_template('json_to_sql/index.html',file_ext="json",form=form)
 
