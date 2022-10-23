@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "flowbite": "^1.5.3",
     "tailwindcss": "^3.1.8"
   }
 }
