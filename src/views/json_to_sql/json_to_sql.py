@@ -21,7 +21,7 @@ def json_to_sql():
 #redirect to this page and show data concerning upload
 def json_to_sql_upload(data):
     print(data)
-    
+
     conn = get_connection(data)
     cur = conn.cursor()
     count = 100
@@ -43,10 +43,10 @@ def json_to_sql_upload(data):
     """
 
     insert_sql = f"""
-         
+
     use {data["dbname"]}
     INSERT INTO {data["table_name"]} (json_data) VALUES (%s)
-        """ 
+        """
 
 
 

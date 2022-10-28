@@ -41,5 +41,6 @@ class JsonToDatabaseForm(FlaskForm):
     dbname =  StringField('Database Name',[validators.InputRequired()])
     dbpass = PasswordField('Password',[validators.InputRequired()])
     table_name = StringField('Table Name',[validators.InputRequired()])
+    table_exists = BooleanField('Table Exists?',default="checked")
 
 # TODO validation needs more work, people can also fill both unix and host if they choose, fixz this
