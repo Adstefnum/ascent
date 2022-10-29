@@ -3,10 +3,11 @@ from flask import request, render_template
 
 def schema_form():
 
-    conn_data=request.get_json(force=True)
+    conn_data=request.args.get("conn_data")
     if request.method =="POST":
         print(conn_data)
-        schema = request.form.to_dict()
+#        schema = request.form.to_dict()
+        schema = request.args()
         print(schema)
         conn_data["schema"] = schema
         print(conn_data)
