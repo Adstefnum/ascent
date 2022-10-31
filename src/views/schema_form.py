@@ -1,12 +1,10 @@
 from .json_to_sql.json_to_sql import json_to_sql_upload
 from flask import request, render_template
 
-def schema_form():
-
-    conn_data=request.args.get("conn_data")
+def schema_form(conn_data):
+    print("#conn")
+    print(conn_data)
     if request.method =="POST":
-        print(conn_data)
-#        schema = request.form.to_dict()
         schema = request.args()
         print(schema)
         conn_data["schema"] = schema

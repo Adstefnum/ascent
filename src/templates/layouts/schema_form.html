@@ -1,7 +1,7 @@
 
 {% extends 'layouts/base.html' %}
 {% block content %}
-<form action="{{ url_for('schema_form') }}" method="POST" >
+<form action="{{ url_for('schema_form',conn_data=conn_data) }}" method="POST" >
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
   <div id="schema-wrapper" class="block">
 <p>hold down the ctrl (windows) or command (mac) button to select multiple options.</p>
