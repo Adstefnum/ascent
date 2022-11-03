@@ -1,10 +1,10 @@
-<div id="schema1" class="flex items-stretch grid gap-6 mb-6 md:grid-cols-5">
-<input type="text" id="json_key" placeholder="json key" />
-<input type="text" id="col_name" placeholder="column name"/>
+<div id="schema-0" class="flex items-stretch grid gap-6 mb-6 md:grid-cols-5">
+<input type="text" id="schema-0-json_key" name="schema-0-json_key" placeholder="json key" />
+<input type="text" id="schema-0-col_name" name= "schema-0-col_name" placeholder="column name"/>
 
 <div id="datatype">
 <label for="datatype">datatype</label>
-<select>
+<select name="schema-0-data_type">
     <option value="VARCHAR">VARCHAR</option>
     <option value="TEXT">TEXT</option>
     <option value="INT">INT</option>
@@ -18,7 +18,7 @@
 <!-- i need to add a text option to enter the max amount for some of these fields -->
 <div id="constraint">
     <label for="constraint">constraint</label>
-<select multiple>
+<select multiple name="schema-0-constraint">
     <option value="UNIQUE">UNIQUE</option>
     <option value="PRIMARY KEY">PRIMARY KEY</option>
     <option value="FOREIGN KEY">FOREIGN KEY</option>

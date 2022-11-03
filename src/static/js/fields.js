@@ -1,5 +1,5 @@
 
-let field_count = 1;
+let field_count = 0;
 
 $(document).ready(function(){
 
@@ -20,17 +20,17 @@ $(document).ready(function(){
 
 function add_schema_field(){
                     field_count+=1;
-                    var schema_comp = $(`<div id="schema${field_count}" class="flex items-stretch grid gap-6 mb-6 md:grid-cols-5">
-                    <input type="text" id="json_key" placeholder="json key" />
-                    <input type="text" id="col_name" placeholder="column name"/>
+i                    var schema_comp = $(`<div id = "schema-${field_count}" name="schema-${field_count}" class="flex items-stretch grid gap-6 mb-6 md:grid-cols-5">
+                    <input type="text" id="schema-${field_count}-json_key" name="schema-${field_count}-json_key" placeholder="json key" />
+                    <input type="text" id="schema-${field_count}-col_name" name="schema-${field_count}-col_name" placeholder="column name"/>
                     <div id="datatype"><label for="datatype">datatype</label>
-                    <select>
+                    <select name="schema-${field_count}-data_type">
                      <option value="VARCHAR">VARCHAR</option>    <option value="TEXT">TEXT</option>
                       <option value="INT">INT</option>    <option value="FLOAT">FLOAT</option>
                        <option value="BOOLEAN">BOOLEAN</option>    <option value="DATE">DATE</option>
                          <option value="DATETIME">DATETIME</option>    <option value="TIMESTAMP">TIMESTAMP</option>
                      </select></div><div id="constraint">    <label for="constraint">constraint</label>
-                     <select multiple>    <option value="UNIQUE">UNIQUE</option>    <option value="PRIMARY KEY">PRIMARY KEY</option>
+                     <select multiple name="schema-${field_count}-constraint">    <option value="UNIQUE">UNIQUE</option>    <option value="PRIMARY KEY">PRIMARY KEY</option>
                    <option value="FOREIGN KEY">FOREIGN KEY</option>    <option value="AUTO INCREMENT">AUTO INCREMENT</option>
                      <option value="NOT NULL">NOT NULL</option>
                      </select></div><button onclick = "remove_schema_field(this);"
@@ -44,7 +44,7 @@ function add_schema_field(){
                         13 L4,13 C3.44771525,13 3,12.5522847 3,12 C3,11.4477153 3.44771525,11 4,11 L4.00000017,11 Z" id="Shape">
                         </path></svg>  <span class="sr-only">Icon description</span></button></div>`);
 
-            $("#schema-wrapper").append(schema_comp);
+            $("#schema").append(schema_comp);
 }
 
 function remove_schema_field(element){

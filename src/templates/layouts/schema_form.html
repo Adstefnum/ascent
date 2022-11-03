@@ -2,11 +2,10 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
 <form action="{{ url_for('schema_form_post') }}" method="POST" >
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-  <div id="schema-wrapper" class="block">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+  <div id="schema" class="block">
 <p>hold down the ctrl (windows) or command (mac) button to select multiple options.</p>
     {% include 'layouts/schema.html' %}
-   
     </div>
 
 
