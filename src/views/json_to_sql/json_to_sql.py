@@ -1,5 +1,5 @@
 from flask import render_template,request,Response, redirect, url_for
-from forms.json_to_sql import JsonToDatabaseForm
+from src.forms.json_to_sql import JsonToDatabaseForm
 from utils.dbutils import get_connection
 from utils.file_upload_utils import user_upload_file
 import os

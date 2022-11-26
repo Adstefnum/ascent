@@ -1,7 +1,7 @@
 from .json_to_sql.json_to_sql import json_to_sql_upload
 from flask import request, render_template, url_for, redirect
 import ujson
-from forms.schema import SchemaForm
+from src.forms.schema import SchemaForm
 
 conn_data_global = {}
 global_form = SchemaForm()
