@@ -13,7 +13,6 @@ def json_to_sql():
     if request.method =="POST" and form.validate():
         data = request.form.to_dict()
         data=ujson.dumps(data)
-        print(data)
         user_upload_file("json")
         return redirect(url_for('schema_form_get',conn_data=data))
 
